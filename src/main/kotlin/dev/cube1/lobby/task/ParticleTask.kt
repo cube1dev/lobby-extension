@@ -16,25 +16,25 @@ import world.cepi.particle.showParticle
 object ParticleTask {
 
     val particles = listOf(
-        Pair(Vec(22.5, 222.5, -2.5), Vec(28.5, 222.5, 3.5)),
-        Pair(Vec(-2.5, 222.5, -21.5), Vec(3.5, 222.5, -27.5)))
+        Pair(Vec(22.5, 223.5, -2.5), Vec(28.5, 223.5, 3.5)),
+        Pair(Vec(-2.5, 223.5, -21.5), Vec(3.5, 223.5, -27.5)))
 
     fun run() {
         GlobalScope.launch {
             while(isActive) {
                 particles.forEach { vecPair ->
                     instance.showParticle(
-                        Particle.Companion.particle(
+                        Particle.particle(
                             type = ParticleType.DUST,
                             data = OffsetAndSpeed(),
                             extraData = Dust(0f, 0.6f, 1f, 1f),
                             count = 1
                         ),
-                        Renderer.fixedRectangle(from = vecPair.first, to = vecPair.second, step = 1.0)
+                        Renderer.fixedRectangle(vecPair.first, vecPair.second, step = 1.0)
                     )
                 }
 
-                delay(500)
+                delay(100)
             }
         }
     }
