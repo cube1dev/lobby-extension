@@ -27,7 +27,7 @@ object Listener {
         val dim = DimensionType.builder(NamespaceID.from("fullbright"))
             .ambientLight(10000.0F)
             .height(335)
-            .logicalHeight(200)
+            .logicalHeight(271)
             .minY(-64)
             .build()
         MinecraftServer.getDimensionTypeManager().addDimension(dim)
