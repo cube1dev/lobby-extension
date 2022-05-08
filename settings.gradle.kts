@@ -1,2 +1,2 @@
-rootProject.name = "lobby-extension"
+rootProject.name = "LobbyExtension"
 
