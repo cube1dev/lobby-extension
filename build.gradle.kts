@@ -42,6 +42,10 @@ dependencies {
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+
+    compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
 
 configurations {
