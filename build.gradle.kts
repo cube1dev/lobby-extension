@@ -45,6 +45,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
+    implementation("com.google.guava:guava:31.0.1-jre")
+
     compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
 

@@ -7,8 +7,8 @@ import net.minestom.server.extensions.Extension;
 class LobbyExtension : Extension() {
 
     override fun initialize(): LoadStatus {
-        ParticleTask.run()
         Listener.run(eventNode())
+        ParticleTask.run()
         logger().info("[LobbyExtension] has been enabled!")
 
         return LoadStatus.SUCCESS

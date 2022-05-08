@@ -1,9 +1,10 @@
 package dev.cube1.lobby.task
 
+import dev.cube1.lobby.listener.Listener.instance
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import net.minestom.server.MinecraftServer
 import net.minestom.server.coordinate.Vec
 import world.cepi.particle.Particle
 import world.cepi.particle.ParticleType
@@ -19,9 +20,8 @@ object ParticleTask {
         Pair(Vec(-2.5, 222.5, -21.5), Vec(3.5, 222.5, -27.5)))
 
     fun run() {
-        val instance = MinecraftServer.getInstanceManager().instances.first()
         GlobalScope.launch {
-            while(true) {
+            while(isActive) {
                 particles.forEach { vecPair ->
                     instance.showParticle(
                         Particle.Companion.particle(
