@@ -26,8 +26,9 @@ object Listener {
     fun run(eventNode: EventNode<Event>) {
         val dim = DimensionType.builder(NamespaceID.from("fullbright"))
             .ambientLight(10000.0F)
-            .height(320)
-            .logicalHeight(350)
+            .height(335)
+            .logicalHeight(200)
+            .minY(-60)
             .build()
         MinecraftServer.getDimensionTypeManager().addDimension(dim)
         val instance = MinecraftServer.getInstanceManager().createInstanceContainer(dim)
