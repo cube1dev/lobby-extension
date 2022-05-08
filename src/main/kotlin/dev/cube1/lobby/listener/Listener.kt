@@ -11,6 +11,9 @@ import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerMoveEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.AnvilLoader
+import net.minestom.server.utils.NamespaceID
+import net.minestom.server.world.DimensionType
+import net.minestom.server.world.DimensionType.DimensionTypeBuilder
 
 object Listener {
 
@@ -21,7 +24,13 @@ object Listener {
     )
 
     fun run(eventNode: EventNode<Event>) {
-        val instance = MinecraftServer.getInstanceManager().createInstanceContainer()
+        val dim = DimensionType.builder(NamespaceID.from("fullbright"))
+            .ambientLight(10000.0F)
+            .height(320)
+            .logicalHeight(320)
+            .build()
+        MinecraftServer.getDimensionTypeManager().addDimension(dim)
+        val instance = MinecraftServer.getInstanceManager().createInstanceContainer(dim)
         instance.chunkLoader = AnvilLoader("lobby")
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if(event.newPosition.y <= 180.0) {
