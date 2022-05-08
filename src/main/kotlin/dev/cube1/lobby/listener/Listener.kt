@@ -28,7 +28,7 @@ object Listener {
             .ambientLight(10000.0F)
             .height(335)
             .logicalHeight(200)
-            .minY(-60)
+            .minY(-64)
             .build()
         MinecraftServer.getDimensionTypeManager().addDimension(dim)
         val instance = MinecraftServer.getInstanceManager().createInstanceContainer(dim)
