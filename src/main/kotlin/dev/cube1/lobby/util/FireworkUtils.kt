@@ -23,7 +23,6 @@ import java.util.concurrent.ThreadLocalRandom
 fun Collection<Player>.showFireworkWithDuration(
     instance: Instance,
     position: Pos,
-    ticks: Int,
     effects: MutableList<FireworkEffect>
 ) {
     val fireworkMeta = FireworkMeta.Builder().effects(effects).build()
@@ -44,12 +43,12 @@ fun Collection<Player>.showFireworkWithDuration(
 
     firework.setInstance(instance, position)
 
-    GlobalScope.launch {
-        repeat(ticks) {
-            firework.velocity = firework.velocity.apply { x, y, z -> Vec(x * 1.15, y + 0.8, z * 1.15) }
-            delay(50)
-        }
+    firework.velocity = firework.velocity.apply { x, y, z -> Vec(x * 1.15, y + 0.8, z * 1.15) }
 
-        sendGroupedPacket(this@showFireworkWithDuration, EntityStatusPacket(firework.entityId, 17))
+    sendGroupedPacket(this@showFireworkWithDuration, EntityStatusPacket(firework.entityId, 17))
+
+    GlobalScope.launch {
+        delay(3000)
+        firework.remove()
     }
 }

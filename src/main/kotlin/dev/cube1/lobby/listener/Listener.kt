@@ -84,12 +84,12 @@ object Listener {
                 FireworkEffect(
                     false,//random.nextBoolean(),
                     false,//random.nextBoolean(),
-                    FireworkEffectType.values().random(),
+                    FireworkEffectType.LARGE_BALL,
                     listOf(Color(random.nextInt(255), 255, 255)),
                     listOf(Color(random.nextInt(255), 255, 255))
                 )
             )
-            listOf(event.player).showFireworkWithDuration(instance, spawn, 20 * 3, effects)
+            event.spawnInstance.players.showFireworkWithDuration(instance, spawn, effects)
         }
     }
 
