@@ -73,10 +73,11 @@ object Listener {
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
-            event.spawnInstance.players.forEach { player ->
-                player.sendMessage("<bold><blue>CUBE <reset>${messages.random().replace(
-                    "{user}", "<gold>${event.player.username}<reset>"
-                )}".toMini())
+            val msg = "<bold><aqua>CUBE <reset>${messages.random().replace(
+                "{user}", "<bold>${event.player.username}<reset>"
+            )}".toMini()
+            event.spawnInstance.players.filter { player -> player != event.player }.forEach { player ->
+                player.sendMessage(msg)
             }
             val random = Random()
             val effects = mutableListOf(
