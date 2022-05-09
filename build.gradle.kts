@@ -45,7 +45,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
-    implementation("com.google.guava:guava:31.0.1-jre")
+    implementation("com.google.guava:guava:31.1-jre")
 
     implementation("net.kyori:adventure-text-minimessage:4.10.1")
 
