@@ -47,6 +47,8 @@ dependencies {
 
     implementation("com.google.guava:guava:31.0.1-jre")
 
+    implementation("net.kyori:adventure-text-minimessage:4.10.1")
+
     compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
 

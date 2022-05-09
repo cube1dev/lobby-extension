@@ -1,7 +1,10 @@
 package dev.cube1.lobby.listener
 
 import com.google.common.io.ByteStreams
+import dev.cube1.lobby.util.showFireworkWithDuration
+import dev.cube1.lobby.util.toMini
 import net.minestom.server.MinecraftServer
+import net.minestom.server.color.Color
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.coordinate.Vec
 import net.minestom.server.entity.GameMode
@@ -13,9 +16,13 @@ import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.AnvilLoader
 import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
+import net.minestom.server.item.firework.FireworkEffect
+import net.minestom.server.item.firework.FireworkEffectType
 import net.minestom.server.utils.NamespaceID
 import net.minestom.server.world.DimensionType
 import net.minestom.server.world.DimensionType.DimensionTypeBuilder
+import java.awt.Color.HSBtoRGB
+import java.util.Random
 
 object Listener {
 
@@ -56,9 +63,32 @@ object Listener {
         eventNode.addListener(PlayerLoginEvent::class.java) { event ->
             event.setSpawningInstance(instance)
         }
+
+        val messages = listOf(
+            "{user}님이 두둥등장!",
+            "{user}님이 접속하셨어요!",
+            "{user}님, 안녕하세요!"
+        )
+
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
+            event.spawnInstance.players.forEach { player ->
+                player.sendMessage("<bold><blue>CUBE <reset>${messages.random().replace(
+                    "{user}", "<gold>${event.player.username}<reset>"
+                )}".toMini())
+            }
+            val random = Random()
+            val effects = mutableListOf(
+                FireworkEffect(
+                    false,//random.nextBoolean(),
+                    false,//random.nextBoolean(),
+                    FireworkEffectType.values().random(),
+                    listOf(Color(random.nextInt(255), 255, 255)),
+                    listOf(Color(random.nextInt(255), 255, 255))
+                )
+            )
+            listOf(event.player).showFireworkWithDuration(instance, spawn, 20 * 3, effects)
         }
     }
 

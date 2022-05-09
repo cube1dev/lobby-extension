@@ -30,7 +30,7 @@ object ParticleTask {
                             extraData = Dust(0f, 0.6f, 1f, 1f),
                             count = 1
                         ),
-                        Renderer.fixedRectangle(vecPair.first, vecPair.second, step = 1.0)
+                        Renderer.fixedRectangle(vecPair.first, vecPair.second, step = 0.5)
                     )
                 }
 
