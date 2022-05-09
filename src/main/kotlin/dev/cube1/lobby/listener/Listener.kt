@@ -77,7 +77,7 @@ object Listener {
             val msg = "<bold><aqua>CUBE <reset>${messages.random().replace(
                 "{user}", "<bold>${event.player.username}<reset>"
             )}".toMini()
-            event.spawnInstance.players.filter { player -> player != event.player }.forEach { player ->
+            event.spawnInstance.players.forEach { player ->
                 player.sendMessage(msg)
             }
             val random = Random()
