@@ -1,6 +1,7 @@
 package dev.cube1.lobby.listener
 
 import com.google.common.io.ByteStreams
+import dev.cube1.lobby.util.createIndicator
 import dev.cube1.lobby.util.showFireworkWithDuration
 import dev.cube1.lobby.util.toMini
 import net.minestom.server.MinecraftServer
@@ -44,6 +45,13 @@ object Listener {
         MinecraftServer.getDimensionTypeManager().addDimension(dim)
         instance = MinecraftServer.getInstanceManager().createInstanceContainer(dim)
         instance.chunkLoader = AnvilLoader("lobby")
+
+        instance.createIndicator("<bold><green>야생".toMini(), Pos(22.5, 224.5, 0.5))
+        instance.createIndicator("<gray>앞으로 이동해 접속하세요!".toMini(), Pos(0.5, 224.25, -21.5))
+
+        instance.createIndicator("<aqua><strikethrough>미니게임".toMini(), Pos(0.5, 224.5, -21.5))
+        instance.createIndicator("<green><bold>COMING SOON".toMini(), Pos(0.5, 224.25, -21.5))
+
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if(event.newPosition.y <= 180.0) {
                 event.newPosition = spawn
