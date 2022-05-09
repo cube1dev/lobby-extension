@@ -67,7 +67,8 @@ object Listener {
         val messages = listOf(
             "{user}님이 두둥등장!",
             "{user}님이 접속하셨어요!",
-            "{user}님, 안녕하세요!"
+            "{user}님, 안녕하세요!",
+            "{user}(이)가 서버에 들어오기 아이템을(를) 사용했다!"
         )
 
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
