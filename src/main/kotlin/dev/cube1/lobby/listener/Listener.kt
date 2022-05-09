@@ -4,6 +4,10 @@ import com.google.common.io.ByteStreams
 import dev.cube1.lobby.util.createIndicator
 import dev.cube1.lobby.util.showFireworkWithDuration
 import dev.cube1.lobby.util.toMini
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import net.minestom.server.MinecraftServer
 import net.minestom.server.color.Color
 import net.minestom.server.coordinate.Pos
@@ -47,7 +51,7 @@ object Listener {
         instance.chunkLoader = AnvilLoader("lobby")
 
         instance.createIndicator("<bold><green>야생".toMini(), Pos(22.5, 224.5, 0.5))
-        instance.createIndicator("<gray>앞으로 이동해 접속하세요!".toMini(), Pos(0.5, 224.25, -21.5))
+        instance.createIndicator("<gray>앞으로 이동해 접속하세요!".toMini(), Pos(22.5, 224.25, 0.5))
 
         instance.createIndicator("<aqua><strikethrough>미니게임".toMini(), Pos(0.5, 224.5, -21.5))
         instance.createIndicator("<green><bold>COMING SOON".toMini(), Pos(0.5, 224.25, -21.5))
