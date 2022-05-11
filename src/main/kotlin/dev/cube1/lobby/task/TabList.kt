@@ -8,20 +8,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import net.kyori.adventure.text.Component
-import net.minestom.server.MinecraftServer
-import net.minestom.server.entity.GameMode
-import net.minestom.server.entity.Player
-import net.minestom.server.event.Event
-import net.minestom.server.event.EventNode
-import net.minestom.server.event.player.PlayerDisconnectEvent
-import net.minestom.server.event.player.PlayerLoginEvent
-import net.minestom.server.network.packet.client.ClientPacketsHandler.Play
-import net.minestom.server.network.packet.server.play.PlayerInfoPacket
-import net.minestom.server.network.packet.server.play.PlayerInfoPacket.AddPlayer
-import net.minestom.server.network.packet.server.play.PlayerInfoPacket.RemovePlayer
-import java.util.*
-import java.util.concurrent.ConcurrentHashMap
 
 object TabList {
 
