@@ -8,6 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.color.Color
 import net.minestom.server.coordinate.Pos
@@ -49,6 +50,7 @@ object Listener {
         MinecraftServer.getDimensionTypeManager().addDimension(dim)
         instance = MinecraftServer.getInstanceManager().createInstanceContainer(dim)
         instance.chunkLoader = AnvilLoader("lobby")
+        instance.enableAutoChunkLoad(true)
 
         instance.createIndicator("<bold><green>야생".toMini(), Pos(22.5, 224.5, 0.5))
         instance.createIndicator("<gray>앞으로 이동해 접속하세요!".toMini(), Pos(22.5, 224.25, 0.5))
@@ -65,6 +67,7 @@ object Listener {
                         entry.value.second.contains(event.newPosition.y) &&
                         entry.value.third.contains(event.newPosition.z)
             }?.key?.also { server ->
+                event.player.sendPlayerListHeaderAndFooter(Component.empty(), Component.empty())
                 val out = ByteStreams.newDataOutput()
                 out.writeUTF("Connect")
                 out.writeUTF(server)
