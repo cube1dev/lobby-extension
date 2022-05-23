@@ -33,8 +33,8 @@ import java.util.Random
 object Listener {
 
     val spawn = Pos(0.5, 227.0, 0.5, -90.0F, 0F)
-    val servers = hashMapOf(
-        "wild" to Triple(22.5..28.5, 222.5..260.5, -2.5..3.5),
+    val servers = HashMap<String, Triple<ClosedFloatingPointRange<Double>, ClosedFloatingPointRange<Double>, ClosedFloatingPointRange<Double>>>(
+        //"wild" to Triple(22.5..28.5, 222.5..260.5, -2.5..3.5),
         //"mini" to Triple(-2.5..3.5, 222.5..260.5, -27.5..-21.5)
     )
 
