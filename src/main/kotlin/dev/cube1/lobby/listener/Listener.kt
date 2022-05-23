@@ -53,7 +53,8 @@ object Listener {
         instance.enableAutoChunkLoad(true)
 
         instance.createIndicator("<bold><green>야생".toMini(), Pos(22.5, 224.5, 0.5))
-        instance.createIndicator("<gray>앞으로 이동해 접속하세요!".toMini(), Pos(22.5, 224.25, 0.5))
+        instance.createIndicator("<red>야생은 종료되었습니다!".toMini(), Pos(22.5, 224.25, 0.5))
+        instance.createIndicator("<red>다음에 다른 컨텐츠로 찾아올게요!".toMini(), Pos(22.5, 224.0, 0.5))
 
         instance.createIndicator("<aqua><strikethrough>미니게임".toMini(), Pos(0.5, 224.5, -21.5))
         instance.createIndicator("<green><bold>COMING SOON".toMini(), Pos(0.5, 224.25, -21.5))
