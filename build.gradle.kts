@@ -3,9 +3,9 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.7.0"
+    id("org.jetbrains.kotlin.jvm") version "1.7.10"
     // Kotlinx serialization for any data format
-    kotlin("plugin.serialization") version "1.7.0"
+    kotlin("plugin.serialization") version "1.7.10"
     // Shade the plugin
     id("com.github.johnrengelman.shadow") version "7.0.0"
     // Allow publishing
@@ -14,7 +14,7 @@ plugins {
     // Apply the application plugin to add support for building a jar
     java
     // Dokka documentation w/ kotlin
-    id("org.jetbrains.dokka") version "1.6.21"
+    id("org.jetbrains.dokka") version "1.7.10"
 }
 
 repositories {
@@ -43,7 +43,7 @@ dependencies {
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     implementation("com.google.guava:guava:31.1-jre")
 
