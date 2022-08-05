@@ -60,7 +60,7 @@ object Listener {
         instance.createIndicator("<green><bold>COMING SOON".toMini(), Pos(0.5, 224.25, -21.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
-            if(event.newPosition.y <= 180.0) {
+            if(event.newPosition.y <= 0) {
                 event.newPosition = spawn
             }
             servers.entries.find { entry ->
