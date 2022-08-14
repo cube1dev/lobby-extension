@@ -21,7 +21,6 @@ class SitCommand: Command("sit") {
 
             if (sender.vehicle != null) return@setDefaultExecutor
 
-            /*
             var i = 0
             while (true) {
                 i++
@@ -33,7 +32,6 @@ class SitCommand: Command("sit") {
                     return@setDefaultExecutor
                 }
             }
-             */
 
             val roundedPos = Pos(
                 sender.position.blockX().toDouble(),
