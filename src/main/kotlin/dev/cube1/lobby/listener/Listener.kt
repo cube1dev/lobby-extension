@@ -75,7 +75,6 @@ object Listener {
             }
         }
         eventNode.addListener(PlayerLoginEvent::class.java) { event ->
-            event.player.setResourcePack(ResourcePack.optional("https://static.planetminecraft.com/files/resource_media/texture/easyblocks-e3380.zip", null))
             event.setSpawningInstance(instance)
         }
 
@@ -87,6 +86,7 @@ object Listener {
         )
 
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
+            event.player.setResourcePack(ResourcePack.optional("https://static.planetminecraft.com/files/resource_media/texture/easyblocks-e3380.zip", null))
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
             val msg = "<bold><aqua>PROJECT_TL'S PRIVATE SERVER <reset>${messages.random().replace(
