@@ -34,10 +34,10 @@ import java.util.Random
 @Suppress("UnstableApiUsage")
 object Listener {
 
-    val spawn = Pos(0.5, 114.0, 0.5, -90.0F, 0F)
+    val spawn = Pos(0.5, 116.0, 0.5, -90.0F, 0F)
     val servers = hashMapOf(
-        "race" to Triple(17.5..15.5, 111.5..114.5, -13.5..-11.5),
-        "wild" to Triple(16.5..14.5, 112.5..115.5, 15.5..17.5)
+        "race" to Triple(15.5..17.5, 111.5..114.5, -13.5..-11.5),
+        "wild" to Triple(14.5..16.5, 112.5..115.5, 15.5..17.5)
     )
 
     lateinit var instance: InstanceContainer
@@ -55,6 +55,7 @@ object Listener {
         instance.enableAutoChunkLoad(true)
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(16.5, 113.0, -12.5))
+        instance.createIndicator("<bold><green>야생".toMini(), Pos(15.5, 114.0, 16.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if(event.newPosition.y <= 80) {
