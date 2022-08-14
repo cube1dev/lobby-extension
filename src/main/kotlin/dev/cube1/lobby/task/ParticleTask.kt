@@ -16,8 +16,8 @@ import world.cepi.particle.showParticle
 object ParticleTask {
 
     val particles = listOf(
-        Pair(Vec(22.5, 223.5, -2.5), Vec(28.5, 223.5, 3.5)),
-        Pair(Vec(-2.5, 223.5, -21.5), Vec(3.5, 223.5, -27.5)))
+        Pair(Vec(17.5, 112.5, -13.5), Vec(15.5, 112.5, -11.5)),
+        Pair(Vec(16.5, 113.5, 15.5), Vec(14.5, 113.5, 17.5)))
 
     fun run() {
         GlobalScope.launch {

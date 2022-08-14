@@ -1,5 +1,6 @@
 package dev.cube1.lobby
 
+import dev.cube1.lobby.command.FlyCommand
 import dev.cube1.lobby.command.GcCommand
 import dev.cube1.lobby.listener.Listener
 import dev.cube1.lobby.task.ParticleTask
@@ -13,7 +14,10 @@ class LobbyExtension : Extension() {
         Listener.run(eventNode())
         ParticleTask.run()
         TabList.run()
-        MinecraftServer.getCommandManager().register(GcCommand())
+        MinecraftServer.getCommandManager().apply {
+            register(GcCommand())
+            register(FlyCommand())
+        }
         logger().info("[LobbyExtension] has been enabled!")
 
         return LoadStatus.SUCCESS

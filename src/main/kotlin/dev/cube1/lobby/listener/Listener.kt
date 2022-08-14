@@ -24,18 +24,20 @@ import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.item.firework.FireworkEffect
 import net.minestom.server.item.firework.FireworkEffectType
+import net.minestom.server.resourcepack.ResourcePack
 import net.minestom.server.utils.NamespaceID
 import net.minestom.server.world.DimensionType
 import net.minestom.server.world.DimensionType.DimensionTypeBuilder
 import java.awt.Color.HSBtoRGB
 import java.util.Random
 
+@Suppress("UnstableApiUsage")
 object Listener {
 
-    val spawn = Pos(0.5, 227.0, 0.5, -90.0F, 0F)
-    val servers = HashMap<String, Triple<ClosedFloatingPointRange<Double>, ClosedFloatingPointRange<Double>, ClosedFloatingPointRange<Double>>>(
-        //"wild" to Triple(22.5..28.5, 222.5..260.5, -2.5..3.5),
-        //"mini" to Triple(-2.5..3.5, 222.5..260.5, -27.5..-21.5)
+    val spawn = Pos(0.5, 114.0, 0.5, -90.0F, 0F)
+    val servers = hashMapOf(
+        "race" to Triple(17.5..15.5, 111.5..114.5, -13.5..-11.5),
+        "wild" to Triple(16.5..14.5, 112.5..115.5, 15.5..17.5)
     )
 
     lateinit var instance: InstanceContainer
@@ -52,15 +54,10 @@ object Listener {
         instance.chunkLoader = AnvilLoader("lobby")
         instance.enableAutoChunkLoad(true)
 
-        instance.createIndicator("<bold><green>야생".toMini(), Pos(22.5, 224.5, 0.5))
-        instance.createIndicator("<red>야생은 종료되었습니다!".toMini(), Pos(22.5, 224.25, 0.5))
-        instance.createIndicator("<red>다음에 다른 컨텐츠로 찾아올게요!".toMini(), Pos(22.5, 224.0, 0.5))
-
-        instance.createIndicator("<aqua><strikethrough>미니게임".toMini(), Pos(0.5, 224.5, -21.5))
-        instance.createIndicator("<green><bold>COMING SOON".toMini(), Pos(0.5, 224.25, -21.5))
+        instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(16.5, 113.0, -12.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
-            if(event.newPosition.y <= 0) {
+            if(event.newPosition.y <= 80) {
                 event.newPosition = spawn
             }
             servers.entries.find { entry ->
@@ -77,6 +74,7 @@ object Listener {
             }
         }
         eventNode.addListener(PlayerLoginEvent::class.java) { event ->
+            event.player.setResourcePack(ResourcePack.optional("https://static.planetminecraft.com/files/resource_media/texture/easyblocks-e3380.zip", null))
             event.setSpawningInstance(instance)
         }
 
@@ -90,7 +88,7 @@ object Listener {
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
-            val msg = "<bold><aqua>CUBE <reset>${messages.random().replace(
+            val msg = "<bold><aqua>PROJECT_TL'S PRIVATE SERVER <reset>${messages.random().replace(
                 "{user}", "<bold>${event.player.username}<reset>"
             )}".toMini()
             event.spawnInstance.players.forEach { player ->
@@ -99,8 +97,8 @@ object Listener {
             val random = Random()
             val effects = mutableListOf(
                 FireworkEffect(
-                    false,//random.nextBoolean(),
-                    false,//random.nextBoolean(),
+                    false, //random.nextBoolean(),
+                    false, //random.nextBoolean(),
                     FireworkEffectType.LARGE_BALL,
                     listOf(Color(random.nextInt(255), 255, 255)),
                     listOf(Color(random.nextInt(255), 255, 255))
