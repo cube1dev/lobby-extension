@@ -38,7 +38,7 @@ object Listener {
     val servers = hashMapOf(
         "race" to Triple(15.5..17.5, 111.5..114.5, -13.5..-11.5),
         "wild" to Triple(14.5..16.5, 112.5..115.5, 15.5..17.5),
-        "pit" to Triple(12.5..14.5, 114.5..117.5, 2.5..4.5)
+        "pit" to Triple(12.5..14.5, 113.5..116.5, 2.5..4.5)
     )
 
     lateinit var instance: InstanceContainer
@@ -57,6 +57,7 @@ object Listener {
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(16.5, 113.0, -12.5))
         instance.createIndicator("<bold><green>야생".toMini(), Pos(15.5, 114.0, 16.5))
+        instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(13.5, 115.0, 3.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if(event.newPosition.y <= 80) {

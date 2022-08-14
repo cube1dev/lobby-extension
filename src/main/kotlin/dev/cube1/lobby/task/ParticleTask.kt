@@ -17,7 +17,8 @@ object ParticleTask {
 
     val particles = listOf(
         Pair(Vec(17.5, 112.5, -13.5), Vec(15.5, 112.5, -11.5)),
-        Pair(Vec(16.5, 113.5, 15.5), Vec(14.5, 113.5, 17.5)))
+        Pair(Vec(16.5, 113.5, 15.5), Vec(14.5, 113.5, 17.5)),
+        Pair(Vec(12.5, 113.5, 4.5), Vec(14.5, 113.5, 2.5)))
 
     fun run() {
         GlobalScope.launch {
