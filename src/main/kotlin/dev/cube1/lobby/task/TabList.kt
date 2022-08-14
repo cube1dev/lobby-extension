@@ -4,11 +4,9 @@ import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.Multimap
 import dev.cube1.lobby.listener.Listener
 import dev.cube1.lobby.util.toMini
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
+@OptIn(DelicateCoroutinesApi::class)
 object TabList {
 
     /*

@@ -11,34 +11,46 @@ import kotlinx.coroutines.launch
 import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.color.Color
+import net.minestom.server.coordinate.Point
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.coordinate.Vec
+import net.minestom.server.entity.Entity
+import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.GameMode
+import net.minestom.server.entity.Player
+import net.minestom.server.entity.metadata.other.ArmorStandMeta
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
+import net.minestom.server.event.player.PlayerBlockInteractEvent
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerMoveEvent
+import net.minestom.server.event.player.PlayerPacketEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.AnvilLoader
 import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
+import net.minestom.server.instance.block.Block
 import net.minestom.server.item.firework.FireworkEffect
 import net.minestom.server.item.firework.FireworkEffectType
+import net.minestom.server.network.packet.client.play.ClientSteerVehiclePacket
 import net.minestom.server.resourcepack.ResourcePack
 import net.minestom.server.utils.NamespaceID
 import net.minestom.server.world.DimensionType
 import net.minestom.server.world.DimensionType.DimensionTypeBuilder
 import java.awt.Color.HSBtoRGB
 import java.util.Random
+import java.util.concurrent.ConcurrentHashMap
 
 @Suppress("UnstableApiUsage")
 object Listener {
+
+    val armourStandSeatMap = ConcurrentHashMap<Entity, Point>()
 
     val spawn = Pos(0.5, 116.0, 0.5, -90.0F, 0F)
     val servers = hashMapOf(
         "race" to Triple(15.5..17.5, 111.5..114.5, -13.5..-11.5),
         "wild" to Triple(14.5..16.5, 112.5..115.5, 15.5..17.5),
-        "pit" to Triple(12.5..14.5, 113.5..116.5, 2.5..4.5)
+        "pit" to Triple(13.5..15.5, 111.5..114.5, -1.5..-3.5)
     )
 
     lateinit var instance: InstanceContainer
@@ -57,10 +69,11 @@ object Listener {
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(16.5, 113.0, -12.5))
         instance.createIndicator("<bold><green>야생".toMini(), Pos(15.5, 114.0, 16.5))
-        instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(13.5, 114.0, 3.5))
+        instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(14.5, 113.0, -2.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
-            if(event.newPosition.y <= 80) {
+            if (event.newPosition.x >= 70 || event.newPosition.x <= -70 || event.newPosition.y <= 70 ||
+                event.newPosition.z >= 70 || event.newPosition.z <= -70) {
                 event.newPosition = spawn
             }
             servers.entries.find { entry ->
@@ -78,6 +91,61 @@ object Listener {
         }
         eventNode.addListener(PlayerLoginEvent::class.java) { event ->
             event.setSpawningInstance(instance)
+        }
+        eventNode.addListener(PlayerBlockInteractEvent::class.java) { event ->
+            event.run {
+                // stealed from emortalmc/lobbyextension
+                if (block == Block.OAK_STAIRS || block == Block.WHITE_CARPET) {
+                    if (player.vehicle != null) return@addListener
+                    if (armourStandSeatMap.values.contains(blockPosition)) return@addListener
+                    if (block.getProperty("half") == "top") return@addListener
+
+                    val armourStand = Entity(EntityType.ARMOR_STAND)
+                    val armourStandMeta = armourStand.entityMeta as ArmorStandMeta
+                    armourStandMeta.setNotifyAboutChanges(false)
+                    armourStandMeta.isSmall = true
+                    armourStandMeta.isHasNoBasePlate = true
+                    armourStandMeta.isMarker = true
+                    armourStandMeta.isInvisible = true
+                    armourStandMeta.setNotifyAboutChanges(true)
+                    armourStand.setNoGravity(true)
+
+                    val spawnPos = blockPosition.add(0.5, 0.3, 0.5)
+                    val yaw = when (block.getProperty("facing")) {
+                        "east" -> 90f
+                        "south" -> 180f
+                        "west" -> -90f
+                        else -> 0f
+                    }
+
+                    armourStand.setInstance(instance, Pos(spawnPos, yaw, 0f))
+                        .thenRun {
+                            armourStand.addPassenger(player)
+                        }
+
+                    armourStandSeatMap[armourStand] = blockPosition
+                }
+            }
+        }
+        eventNode.addListener(PlayerPacketEvent::class.java) { event ->
+            event.run {
+                if(packet is ClientSteerVehiclePacket) {
+                    val steerPacket = packet as ClientSteerVehiclePacket
+                    if (steerPacket.flags.toInt() == 2) {
+                        if (player.vehicle != null && player.vehicle !is Player) {
+                            val entity = player.vehicle!!
+                            entity.removePassenger(player)
+
+                            if (armourStandSeatMap.containsKey(entity)) {
+                                armourStandSeatMap.remove(entity)
+                                entity.remove()
+                                player.velocity = Vec(0.0, 10.0, 0.0)
+                            }
+                        }
+                        return@addListener
+                    }
+                }
+            }
         }
 
         val messages = listOf(

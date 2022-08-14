@@ -49,6 +49,7 @@ dependencies {
 
     implementation("net.kyori:adventure-text-minimessage:4.11.0")
 
+    compileOnly("org.shredzone.commons:commons-suncalc:3.5")
     compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
 

@@ -1,10 +1,7 @@
 package dev.cube1.lobby.task
 
 import dev.cube1.lobby.listener.Listener.instance
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import net.minestom.server.coordinate.Vec
 import world.cepi.particle.Particle
 import world.cepi.particle.ParticleType
@@ -13,12 +10,13 @@ import world.cepi.particle.extra.Dust
 import world.cepi.particle.renderer.Renderer
 import world.cepi.particle.showParticle
 
+@OptIn(DelicateCoroutinesApi::class)
 object ParticleTask {
 
     val particles = listOf(
         Pair(Vec(17.5, 112.5, -13.5), Vec(15.5, 112.5, -11.5)),
         Pair(Vec(16.5, 113.5, 15.5), Vec(14.5, 113.5, 17.5)),
-        Pair(Vec(12.5, 113.5, 4.5), Vec(14.5, 113.5, 2.5)))
+        Pair(Vec(13.5, 112.5, -1.5), Vec(15.5, 112.5, -3.5)))
 
     fun run() {
         GlobalScope.launch {
