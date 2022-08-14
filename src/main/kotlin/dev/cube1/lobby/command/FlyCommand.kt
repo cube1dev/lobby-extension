@@ -13,13 +13,14 @@ class FlyCommand : Command("fly") {
                 return@setDefaultExecutor
             }
 
-            if (!sender.isFlying) {
+            if (!sender.isAllowFlying) {
                 sender.sendMessage(Component.text("비행을 활성화 했어요.", NamedTextColor.GREEN))
             } else {
                 sender.sendMessage(Component.text("비행을 비활성화 했어요.", NamedTextColor.RED))
             }
 
-            sender.isFlying = !sender.isFlying
+            sender.isAllowFlying = !sender.isAllowFlying
+            sender.isFlying = sender.isAllowFlying
         }
     }
 }
