@@ -21,8 +21,8 @@ class Playlist(val player: Player, val list: ArrayList<Int> = ArrayList(), var n
         }
 
     fun play() {
+        if(nowPlaying == -1) return
         playing = true
-        if(nowPlaying == -1) nowPlaying = 0
 
         playJob = GlobalScope.launch {
             while(isActive) {
@@ -32,6 +32,7 @@ class Playlist(val player: Player, val list: ArrayList<Int> = ArrayList(), var n
                 nowPlaying++
                 if(nowPlaying + 1 >= list.size) {
                     if(!loop) {
+                        playing = false
                         nowPlaying = -1
                         break
                     }

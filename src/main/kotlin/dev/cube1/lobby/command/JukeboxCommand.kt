@@ -44,7 +44,7 @@ object JukeboxCommand: Command("jukebox") {
                 inventory.addInventoryCondition { _, slot, _, _ ->
                     if(slot == i) {
                         playlist.list.add(i)
-                        JukeboxCommand.playlist[player] = playlist
+                        //JukeboxCommand.playlist[player] = playlist
                         openPlaylists(player)
                     }
                 }
@@ -102,7 +102,7 @@ object JukeboxCommand: Command("jukebox") {
                 inventory.addInventoryCondition { _, slot, _, _ ->
                     if(slot == i) {
                         playlist.list.removeAt(i)
-                        JukeboxCommand.playlist[player] = playlist
+                        //JukeboxCommand.playlist[player] = playlist
                         openPlaylists(player)
                     }
                 }
@@ -162,7 +162,7 @@ object JukeboxCommand: Command("jukebox") {
                 } else {
                     playlist.play()
                 }
-                JukeboxCommand.playlist[player] = playlist
+                //JukeboxCommand.playlist[player] = playlist
                 openPlaylists(player)
             }
         }
@@ -190,7 +190,7 @@ object JukeboxCommand: Command("jukebox") {
         inventory.addInventoryCondition { _, slot, _, res ->
             if(slot == 52) {
                 playlist.loop = !playlist.loop
-                JukeboxCommand.playlist[player] = playlist
+                //JukeboxCommand.playlist[player] = playlist
                 openPlaylists(player)
             }
         }
@@ -233,7 +233,7 @@ object JukeboxCommand: Command("jukebox") {
                 playlist.nowPlaying = playlist.list.size - 1
 
             playlist.play()
-            JukeboxCommand.playlist[player] = playlist
+            //JukeboxCommand.playlist[player] = playlist
             openPlaylists(player)
         }
 
