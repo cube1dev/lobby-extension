@@ -50,7 +50,7 @@ object Listener {
     val servers = hashMapOf(
         "race" to Triple(15.5..17.5, 111.5..114.5, -13.5..-11.5),
         "wild" to Triple(14.5..16.5, 112.5..115.5, 15.5..17.5),
-        "pit" to Triple(13.5..15.5, 110.5..115.5, -0.5..-2.5)
+        "pit" to Triple(13.5..15.5, 110.5..115.5, -2.5..-0.5)
     )
 
     lateinit var instance: InstanceContainer
