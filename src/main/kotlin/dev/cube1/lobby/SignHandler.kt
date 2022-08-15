@@ -14,12 +14,12 @@ class SignHandler: BlockHandler {
     override fun getBlockEntityTags(): MutableCollection<Tag<*>> =
         mutableListOf(
             Tag.String("ExtraType"),
-            Tag.NBT<NBTCompound>("Color"),
-            Tag.NBT<NBTCompound>("GlowingText"),
-            Tag.NBT<NBTCompound>("Text1"),
-            Tag.NBT<NBTCompound>("Text2"),
-            Tag.NBT<NBTCompound>("Text3"),
-            Tag.NBT<NBTCompound>("Text4")
+            Tag.NBT("Color"),
+            Tag.NBT("GlowingText"),
+            Tag.NBT("Text1"),
+            Tag.NBT("Text2"),
+            Tag.NBT("Text3"),
+            Tag.NBT("Text4")
         )
 
 }

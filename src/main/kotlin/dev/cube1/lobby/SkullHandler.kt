@@ -13,6 +13,6 @@ class SkullHandler: BlockHandler {
     override fun getBlockEntityTags(): MutableCollection<Tag<*>> =
         mutableListOf(
             Tag.String("ExtraType"),
-            Tag.NBT<NBTCompound>("SkullOwner")
+            Tag.NBT("SkullOwner")
         )
 }
