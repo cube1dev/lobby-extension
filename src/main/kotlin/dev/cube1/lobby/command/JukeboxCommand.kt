@@ -65,6 +65,7 @@ object JukeboxCommand: Command("jukebox") {
                 openPlaylists(player)
             }
         }
+        player.openInventory(inventory)
     }
 
     fun openPlaylists(player: Player) {
