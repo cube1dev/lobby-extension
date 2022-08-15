@@ -28,10 +28,10 @@ class Playlist(val player: Player, val list: ArrayList<Int> = ArrayList(), var n
             while(isActive) {
                 val song = loadedNbs[nowPlaying]
                 NBS.play(song, player)
-                delay((1000.0 / song.tps).toLong())
+                delay((1000.0 / song.tps).toLong() * song.length)
                 nowPlaying++
                 if(nowPlaying + 1 >= list.size) {
-                    if(loop) {
+                    if(!loop) {
                         nowPlaying = -1
                         break
                     }

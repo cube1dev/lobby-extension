@@ -13,9 +13,10 @@ import net.minestom.server.inventory.InventoryType
 import net.minestom.server.item.ItemStack
 import net.minestom.server.item.Material
 import java.io.File
+import java.util.LinkedList
 
-val loadedNbs = arrayListOf<NBS>()
-val nbsNames = arrayListOf<String>()
+val loadedNbs = LinkedList<NBS>()
+val nbsNames = LinkedList<String>()
 
 object JukeboxCommand: Command("jukebox") {
 
@@ -84,7 +85,7 @@ object JukeboxCommand: Command("jukebox") {
                 inventory.setItemStack(
                     i, ItemStack.of(Material.MUSIC_DISC_13)
                         .withDisplayName(
-                            Component.text(nbs.songName, NamedTextColor.WHITE, TextDecoration.BOLD)
+                            Component.text(nbsNames[i], NamedTextColor.WHITE, TextDecoration.BOLD)
                                 .decoration(TextDecoration.ITALIC, false)
                         )
                         .withLore(listOf(
@@ -156,7 +157,11 @@ object JukeboxCommand: Command("jukebox") {
             )))
         inventory.addInventoryCondition { _, slot, _, res ->
             if(slot == 46) {
-                playlist.play()
+                if(playlist.playing) {
+                    playlist.play()
+                } else {
+                    playlist.stop()
+                }
                 JukeboxCommand.playlist[player] = playlist
                 openPlaylists(player)
             }
