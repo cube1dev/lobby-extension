@@ -158,9 +158,9 @@ object JukeboxCommand: Command("jukebox") {
         inventory.addInventoryCondition { _, slot, _, res ->
             if(slot == 46) {
                 if(playlist.playing) {
-                    playlist.play()
-                } else {
                     playlist.stop()
+                } else {
+                    playlist.play()
                 }
                 JukeboxCommand.playlist[player] = playlist
                 openPlaylists(player)
