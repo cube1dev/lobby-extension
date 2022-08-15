@@ -31,9 +31,11 @@ object JukeboxCommand: Command("jukebox") {
             res.isCancel = true
         }
 
+        val songs = loadedNbs.stream().filter { !playlist.list.contains(loadedNbs.indexOf(it)) }.toArray()
+
         for(i in 0..35) {
-            if(loadedNbs.size >= i + 1) {
-                val nbs = loadedNbs[i]
+            if(songs.size >= i + 1) {
+                val nbs = songs[i]
                 inventory.setItemStack(
                     i, ItemStack.of(Material.MUSIC_DISC_13)
                         .withDisplayName(

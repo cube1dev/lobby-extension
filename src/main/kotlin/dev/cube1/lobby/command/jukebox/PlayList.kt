@@ -21,7 +21,12 @@ class Playlist(val player: Player, val list: ArrayList<Int> = ArrayList(), var n
         }
 
     fun play() {
-        if(nowPlaying == -1) return
+        if(nowPlaying == -1) {
+            if(list.isNotEmpty())
+                nowPlaying = 0
+            else
+                return
+        }
         playing = true
 
         playJob = GlobalScope.launch {
