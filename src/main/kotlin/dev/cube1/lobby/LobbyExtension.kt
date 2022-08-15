@@ -21,7 +21,8 @@ class LobbyExtension : Extension() {
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun initialize(): LoadStatus {
-        MinecraftServer.getBlockManager().registerHandler(NamespaceID.from(Key.key("minecraft:skull")), Supplier { SkullHandler() });
+        MinecraftServer.getBlockManager().registerHandler(NamespaceID.from(Key.key("minecraft:skull")), Supplier { SkullHandler() })
+        MinecraftServer.getBlockManager().registerHandler(NamespaceID.from(Key.key("minecraft:sign")), Supplier { SignHandler() })
         Listener.run(eventNode())
         ParticleTask.run()
         TabList.run()

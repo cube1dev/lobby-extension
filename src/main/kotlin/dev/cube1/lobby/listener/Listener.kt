@@ -95,7 +95,7 @@ object Listener {
         eventNode.addListener(PlayerBlockInteractEvent::class.java) { event ->
             event.run {
                 // stealed from emortalmc/lobbyextension
-                if (block == Block.SPRUCE_STAIRS || block == Block.WHITE_CARPET) {
+                if (block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) || block == Block.WHITE_CARPET) {
                     if (player.vehicle != null) return@addListener
                     if (armourStandSeatMap.values.contains(blockPosition)) return@addListener
                     if (block.getProperty("half") == "top") return@addListener
