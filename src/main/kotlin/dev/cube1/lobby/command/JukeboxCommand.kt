@@ -30,7 +30,7 @@ object JukeboxCommand: Command("jukebox") {
         }
 
         for(i in 0..35) {
-            if(loadedNbs.size <= i + 1) {
+            if(loadedNbs.size >= i + 1) {
                 val nbs = loadedNbs[i]
                 inventory.setItemStack(
                     i, ItemStack.of(Material.MUSIC_DISC_13)
@@ -170,12 +170,12 @@ object JukeboxCommand: Command("jukebox") {
                 this.run {
                     if (playlist.loop)
                         Component.text("클릭으로 ", NamedTextColor.WHITE)
-                            .append(Component.text("반복 활성화", NamedTextColor.GREEN, TextDecoration.BOLD))
+                            .append(Component.text("반복 비활성화", NamedTextColor.RED, TextDecoration.BOLD))
                             .append(Component.text("하세요!", NamedTextColor.WHITE)
                                 .decoration(TextDecoration.BOLD, false))
                     else
                         Component.text("클릭으로 ", NamedTextColor.WHITE)
-                            .append(Component.text("반복 비활성화", NamedTextColor.RED, TextDecoration.BOLD))
+                            .append(Component.text("반복 활성화", NamedTextColor.GREEN, TextDecoration.BOLD))
                             .append(Component.text("하세요!", NamedTextColor.WHITE)
                                 .decoration(TextDecoration.BOLD, false))
                 }.decoration(TextDecoration.ITALIC, false),
@@ -188,7 +188,7 @@ object JukeboxCommand: Command("jukebox") {
             }
         }
 
-        inventory.setItemStack(53, ItemStack.of(Material.CLOCK)
+        inventory.setItemStack(53, ItemStack.of(Material.BARRIER)
             .withDisplayName(
                 Component.text("닫기", NamedTextColor.RED, TextDecoration.BOLD)
                     .decoration(TextDecoration.ITALIC, false)
