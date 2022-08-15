@@ -38,7 +38,7 @@ dependencies {
     compileOnly(kotlin("reflect"))
 
     // Compile Minestom into project
-    compileOnly("com.github.Minestom:Minestom:4a976a3333")
+    compileOnly("com.github.Minestom:Minestom:7867313290")
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
@@ -51,7 +51,8 @@ dependencies {
 
     implementation("com.github.EmortalMC:NBStom:latest")
 
-    compileOnly("org.shredzone.commons:commons-suncalc:3.5")
+    implementation("org.shredzone.commons:commons-suncalc:3.5")
+
     compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
 

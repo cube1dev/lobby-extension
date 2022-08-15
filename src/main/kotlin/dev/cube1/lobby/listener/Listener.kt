@@ -178,5 +178,4 @@ object Listener {
             event.spawnInstance.players.showFireworkWithDuration(instance, spawn, effects)
         }
     }
-
 }
