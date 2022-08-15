@@ -15,6 +15,7 @@ import net.minestom.server.item.Material
 import java.io.File
 
 val loadedNbs = arrayListOf<NBS>()
+val nbsNames = arrayListOf<String>()
 
 object JukeboxCommand: Command("jukebox") {
 
@@ -35,7 +36,7 @@ object JukeboxCommand: Command("jukebox") {
                 inventory.setItemStack(
                     i, ItemStack.of(Material.MUSIC_DISC_13)
                         .withDisplayName(
-                            Component.text(nbs.songName, NamedTextColor.WHITE, TextDecoration.BOLD)
+                            Component.text(nbsNames[i], NamedTextColor.WHITE, TextDecoration.BOLD)
                                 .decoration(TextDecoration.ITALIC, false)
                         )
                 )
@@ -237,6 +238,7 @@ object JukeboxCommand: Command("jukebox") {
     init {
         File("songs/").listFiles()?.forEach { nbsFile ->
             loadedNbs.add(NBS(nbsFile.toPath()))
+            nbsNames.add(nbsFile.nameWithoutExtension)
         }
 
         setDefaultExecutor { sender, _ ->
