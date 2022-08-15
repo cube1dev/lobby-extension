@@ -77,7 +77,7 @@ object JukeboxCommand: Command("jukebox") {
         }
 
         for(i in 0..35) {
-            if(playlist.list.size <= i + 1) {
+            if(playlist.list.size >= i + 1) {
                 val nbs = loadedNbs[playlist.list[i]]
                 inventory.setItemStack(
                     i, ItemStack.of(Material.MUSIC_DISC_13)
