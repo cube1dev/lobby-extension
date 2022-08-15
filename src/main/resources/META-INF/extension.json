@@ -2,5 +2,5 @@
   "entrypoint": "${project.group}.${project.mainClass}",
   "name": "${project.name}",
   "version": "${project.version}",
-  "dependencies": ["Particable"]
+  "dependencies": ["Particable", "NBStom"]
 }
