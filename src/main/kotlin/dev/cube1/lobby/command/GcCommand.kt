@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 
-class GcCommand : Command("gc") {
+object GcCommand : Command("gc") {
     init {
         setDefaultExecutor { sender, _ ->
             if(sender is ConsoleSender) {
