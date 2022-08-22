@@ -72,8 +72,8 @@ object Listener {
         instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(14.5, 113.0, -1.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
-            if (event.newPosition.x >= 70 || event.newPosition.x <= -70 || event.newPosition.y <= 70 ||
-                event.newPosition.z >= 70 || event.newPosition.z <= -70) {
+            if (event.newPosition.x >= 80 || event.newPosition.x <= -80 || event.newPosition.y <= 80 ||
+                event.newPosition.z >= 80 || event.newPosition.z <= -80) {
                 event.newPosition = spawn
             }
             servers.entries.find { entry ->
