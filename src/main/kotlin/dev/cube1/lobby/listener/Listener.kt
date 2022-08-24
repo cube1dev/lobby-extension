@@ -87,11 +87,11 @@ object Listener {
         }
         eventNode.addListener(PlayerBlockInteractEvent::class.java) { event ->
             event.run {
-                // stealed from emortalmc/lobbyextension
-                if (block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) || block == Block.WHITE_CARPET) {
-                    if (player.vehicle != null) return@addListener
-                    if (armourStandSeatMap.values.contains(blockPosition)) return@addListener
-                    if (block.getProperty("half") == "top") return@addListener
+                fun sit(blockPos: Pos) {
+                    // crawling from 'emortalmc/lobbyextension'
+                    if (player.vehicle != null) return
+                    if (armourStandSeatMap.values.contains(blockPosition)) return
+                    if (block.getProperty("half") == "top") return
 
                     val armourStand = Entity(EntityType.ARMOR_STAND)
                     val armourStandMeta = armourStand.entityMeta as ArmorStandMeta
@@ -103,7 +103,7 @@ object Listener {
                     armourStandMeta.setNotifyAboutChanges(true)
                     armourStand.setNoGravity(true)
 
-                    val spawnPos = blockPosition.add(0.5, 0.3, 0.5)
+                    val spawnPos = blockPosition.add(blockPos.x, blockPos.y, blockPos.z)
                     val yaw = when (block.getProperty("facing")) {
                         "east" -> 90f
                         "south" -> 180f
@@ -117,6 +117,11 @@ object Listener {
                         }
 
                     armourStandSeatMap[armourStand] = blockPosition
+                }
+
+                when {
+                    block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) -> sit(Pos(0.5, 0.3, 0.5))
+                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.1, 0.5))
                 }
             }
         }
