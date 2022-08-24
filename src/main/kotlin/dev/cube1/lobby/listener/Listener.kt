@@ -171,6 +171,8 @@ object Listener {
             event.spawnInstance.players.showFireworkWithDuration(instance, spawn, effects)
             event.player.isAllowFlying = true
             event.player.isFlying = event.player.isAllowFlying
+
+            event.player.isFlying = false
         }
     }
 }
