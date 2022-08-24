@@ -127,7 +127,7 @@ object Listener {
                     block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) -> {
                         sit(Pos(0.5, 0.3, 0.5, -1000f, 0f))
                     }
-                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.0, 0.5, player.position.yaw, 0f))
+                    block == Block.WHITE_CARPET -> sit(Pos(0.5, -0.2, 0.5, player.position.yaw, 0f))
                 }
             }
         }
