@@ -121,13 +121,13 @@ object Listener {
 
                 when {
                     block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) -> sit(Pos(0.5, 0.3, 0.5))
-                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.1, 0.5))
+                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.01, 0.5))
                 }
             }
         }
         eventNode.addListener(PlayerPacketEvent::class.java) { event ->
             event.run {
-                if(packet is ClientSteerVehiclePacket) {
+                if (packet is ClientSteerVehiclePacket) {
                     val steerPacket = packet as ClientSteerVehiclePacket
                     if (steerPacket.flags.toInt() == 2) {
                         if (player.vehicle != null && player.vehicle !is Player) {
