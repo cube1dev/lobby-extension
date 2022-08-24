@@ -104,11 +104,15 @@ object Listener {
                     armourStand.setNoGravity(true)
 
                     val spawnPos = blockPosition.add(blockPos.x, blockPos.y, blockPos.z)
-                    val yaw = when (block.getProperty("facing")) {
-                        "east" -> 90f
-                        "south" -> 180f
-                        "west" -> -90f
-                        else -> 0f
+                    val yaw = if (blockPos.yaw == -1000f) {
+                        when (block.getProperty("facing")) {
+                            "east" -> 90f
+                            "south" -> 180f
+                            "west" -> -90f
+                            else -> 0f
+                        }
+                    } else {
+                        blockPos.yaw
                     }
 
                     armourStand.setInstance(instance, Pos(spawnPos, yaw, 0f))
@@ -120,8 +124,10 @@ object Listener {
                 }
 
                 when {
-                    block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) -> sit(Pos(0.5, 0.3, 0.5))
-                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.01, 0.5))
+                    block.compare(Block.SPRUCE_STAIRS, Block.Comparator.ID) -> {
+                        sit(Pos(0.5, 0.3, 0.5, -1000f, 0f))
+                    }
+                    block == Block.WHITE_CARPET -> sit(Pos(0.5, 0.0, 0.5, player.position.yaw, 0f))
                 }
             }
         }
