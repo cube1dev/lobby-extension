@@ -10,7 +10,7 @@ import net.minestom.server.entity.Player
 import net.minestom.server.entity.metadata.other.ArmorStandMeta
 import net.minestom.server.instance.block.Block
 
-// stealed from emortalmc/lobbyextension
+// crawled from emortalmc/lobbyextension
 object SitCommand: Command("sit") {
     init {
         setDefaultExecutor { sender, _ ->
@@ -49,7 +49,7 @@ object SitCommand: Command("sit") {
             armourStandMeta.setNotifyAboutChanges(true)
             armourStand.setNoGravity(true)
 
-            val spawnPos = roundedPos.add(0.5, -0.3, 0.5)
+            val spawnPos = roundedPos.add(0.5, -0.2, 0.5)
             armourStand.setInstance(sender.instance!!, spawnPos.withYaw(sender.position.yaw))
                 .thenRun {
                     armourStand.addPassenger(sender)
