@@ -4,10 +4,6 @@ import com.google.common.io.ByteStreams
 import dev.cube1.lobby.util.createIndicator
 import dev.cube1.lobby.util.showFireworkWithDuration
 import dev.cube1.lobby.util.toMini
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.color.Color
@@ -27,7 +23,6 @@ import net.minestom.server.event.player.PlayerMoveEvent
 import net.minestom.server.event.player.PlayerPacketEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.AnvilLoader
-import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.instance.block.Block
 import net.minestom.server.item.firework.FireworkEffect
@@ -36,8 +31,6 @@ import net.minestom.server.network.packet.client.play.ClientSteerVehiclePacket
 import net.minestom.server.resourcepack.ResourcePack
 import net.minestom.server.utils.NamespaceID
 import net.minestom.server.world.DimensionType
-import net.minestom.server.world.DimensionType.DimensionTypeBuilder
-import java.awt.Color.HSBtoRGB
 import java.util.Random
 import java.util.concurrent.ConcurrentHashMap
 
@@ -47,10 +40,10 @@ object Listener {
     val armourStandSeatMap = ConcurrentHashMap<Entity, Point>()
 
     val spawn = Pos(0.5, 116.0, 0.5, -90.0F, 0F)
-    val servers = hashMapOf(
-        "race" to Triple(15.5..17.5, 111.5..114.5, -13.5..-11.5),
-        "wild" to Triple(14.5..16.5, 112.5..115.5, 15.5..17.5),
-        "pit" to Triple(13.5..15.5, 110.5..115.5, -2.5..-0.5)
+    private val servers = hashMapOf(
+        "race" to Triple(15.5..17.5, 111.5..113.5, -13.5..-11.5),
+        "wild" to Triple(14.5..16.5, 112.5..114.5, 15.5..17.5),
+        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
     )
 
     lateinit var instance: InstanceContainer
@@ -176,6 +169,8 @@ object Listener {
                 )
             )
             event.spawnInstance.players.showFireworkWithDuration(instance, spawn, effects)
+            event.player.isAllowFlying = true
+            event.player.isFlying = event.player.isAllowFlying
         }
     }
 }
