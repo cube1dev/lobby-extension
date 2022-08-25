@@ -64,7 +64,6 @@ object Listener {
         instance.enableAutoChunkLoad(true)
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(40.5, 114.0, 6.5))
-        instance.createIndicator("<bold><green>야생".toMini(), Pos(15.5, 114.0, 16.5))
         instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(14.5, 113.0, -1.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->

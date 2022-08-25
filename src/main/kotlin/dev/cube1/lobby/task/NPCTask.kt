@@ -1,19 +1,21 @@
 package dev.cube1.lobby.task
 
 import dev.cube1.lobby.listener.Listener.instance
+import dev.cube1.lobby.util.toMini
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.TextComponent
+import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.text.format.TextDecoration
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.entity.Entity
 import net.minestom.server.entity.EntityType
 import java.util.*
 
-data class ServerNPC(val name: TextComponent, val server: String, val loc: Pos, val uniqueId: UUID = UUID.randomUUID())
+data class ServerNPC(val name: Component, val server: String, val loc: Pos, val uniqueId: UUID = UUID.randomUUID())
 
 object NPCTask {
     val entityList = mutableListOf(
         ServerNPC(
-            Component.text("야생"),
+            "<bold><green>야생".toMini(),
             "wild",
             Pos(43.5, 113.0, 17.5, -180F, 0F),
         )
