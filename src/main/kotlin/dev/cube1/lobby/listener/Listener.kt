@@ -185,11 +185,13 @@ object Listener {
         }
 
         eventNode.addListener(PlayerEntityInteractEvent::class.java) { event ->
-            if (event.entity.entityType == EntityType.PLAYER) {
-                NPCTask.entityList.forEach { npc ->
-                    if (event.entity.name == npc.name) {
-                        event.player.moveServer(npc.server)
-                    }
+//            if (event.entity.entityType != EntityType.PLAYER) {
+//                return@addListener
+//            }
+
+            NPCTask.entityList.forEach { npc ->
+                if (event.entity.name == npc.name) {
+                    event.player.moveServer(npc.server)
                 }
             }
         }
