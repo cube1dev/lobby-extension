@@ -23,14 +23,6 @@ object NPCTask {
 
     fun run() {
         entityList.forEach { npc ->
-//            val entity = Entity(EntityType.VILLAGER).let { e ->
-//                val meta = e.entityMeta
-//                meta.customName = npc.name
-//                meta.isCustomNameVisible = true
-//
-//                e
-//            }
-//            entity.setInstance(instance, npc.loc)
             FakePlayer.initPlayer(UUID.randomUUID(), npc.server) { fakePlayer ->
                 fakePlayer.isInvisible = true
                 fakePlayer.skin = PlayerSkin.fromUsername("Plaming")
@@ -38,7 +30,7 @@ object NPCTask {
                 meta.customName = npc.name
                 meta.isCustomNameVisible = true
 
-                fakePlayer.setInstance(instance, npc.loc)
+                fakePlayer.respawnPoint = npc.loc
             }
         }
     }
