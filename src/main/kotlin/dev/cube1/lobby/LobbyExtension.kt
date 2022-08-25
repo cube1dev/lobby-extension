@@ -14,7 +14,6 @@ import net.minestom.server.extensions.Extension
 import net.kyori.adventure.key.Key;
 import net.minestom.server.utils.NamespaceID
 import java.time.Instant
-import java.util.function.Supplier
 
 class LobbyExtension : Extension() {
     override fun initialize(): LoadStatus {

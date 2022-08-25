@@ -187,7 +187,7 @@ object Listener {
         eventNode.addListener(PlayerEntityInteractEvent::class.java) { event ->
             if (event.entity.entityType == EntityType.PLAYER) {
                 NPCTask.entityList.forEach { npc ->
-                    if (event.entity.name == Component.text(npc.name)) {
+                    if (event.entity.name == npc.name) {
                         event.player.moveServer(npc.server)
                     }
                 }
