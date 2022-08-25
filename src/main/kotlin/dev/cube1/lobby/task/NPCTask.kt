@@ -1,13 +1,8 @@
 package dev.cube1.lobby.task
 
-import dev.cube1.lobby.listener.Listener.instance
 import dev.cube1.lobby.util.toMini
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextDecoration
 import net.minestom.server.coordinate.Pos
-import net.minestom.server.entity.Entity
-import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.PlayerSkin
 import net.minestom.server.entity.fakeplayer.FakePlayer
 import java.util.*
