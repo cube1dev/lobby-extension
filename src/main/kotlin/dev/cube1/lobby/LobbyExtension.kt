@@ -5,6 +5,7 @@ import dev.cube1.lobby.handler.CampfireHandler
 import dev.cube1.lobby.handler.SignHandler
 import dev.cube1.lobby.handler.SkullHandler
 import dev.cube1.lobby.listener.Listener
+import dev.cube1.lobby.task.NPCTask
 import dev.cube1.lobby.task.ParticleTask
 import dev.cube1.lobby.task.TabList
 import dev.cube1.lobby.task.TimeSyncTask
@@ -25,6 +26,7 @@ class LobbyExtension : Extension() {
         Listener.run(eventNode())
         ParticleTask.run()
         TabList.run()
+        NPCTask.run()
         MinecraftServer.getCommandManager().apply {
             register(GcCommand)
             register(FlyCommand)

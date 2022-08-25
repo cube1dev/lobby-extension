@@ -1,7 +1,8 @@
 package dev.cube1.lobby.listener
 
-import com.google.common.io.ByteStreams
+import dev.cube1.lobby.task.NPCTask
 import dev.cube1.lobby.util.createIndicator
+import dev.cube1.lobby.util.moveServer
 import dev.cube1.lobby.util.showFireworkWithDuration
 import dev.cube1.lobby.util.toMini
 import net.kyori.adventure.text.Component
@@ -18,6 +19,7 @@ import net.minestom.server.entity.metadata.other.ArmorStandMeta
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
 import net.minestom.server.event.player.PlayerBlockInteractEvent
+import net.minestom.server.event.player.PlayerEntityInteractEvent
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerMoveEvent
 import net.minestom.server.event.player.PlayerPacketEvent
@@ -44,7 +46,6 @@ object Listener {
 //        "wild" to Triple(14.5..16.5, 112.5..114.5, 15.5..17.5),
 //        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
         "race" to Triple(39.5..41.5, 111.5..113.5, 5.5..7.5),
-        "wild" to Triple(14.5..16.5, 113.5..115.5, 15.5..17.5),
         "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
     )
 
@@ -76,12 +77,7 @@ object Listener {
                         entry.value.second.contains(event.newPosition.y) &&
                         entry.value.third.contains(event.newPosition.z)
             }?.key?.also { server ->
-                event.player.sendPlayerListHeaderAndFooter(Component.empty(), Component.empty())
-                val out = ByteStreams.newDataOutput()
-                out.writeUTF("Connect")
-                out.writeUTF(server)
-
-                event.player.sendPluginMessage("BungeeCord", out.toByteArray())
+                event.player.moveServer(server)
             }
         }
         eventNode.addListener(PlayerLoginEvent::class.java) { event ->
@@ -186,6 +182,16 @@ object Listener {
             event.player.isFlying = event.player.isAllowFlying
 
             event.player.isFlying = false
+        }
+
+        eventNode.addListener(PlayerEntityInteractEvent::class.java) { event ->
+            if (event.entity.entityType == EntityType.PLAYER) {
+                NPCTask.entityList.forEach { npc ->
+                    if (event.entity.name == Component.text(npc.name)) {
+                        event.player.moveServer(npc.server)
+                    }
+                }
+            }
         }
     }
 }
