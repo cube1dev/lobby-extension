@@ -190,10 +190,7 @@ object Listener {
             NPCTask.entityList.forEach { npc ->
                 if (event.target.customName == npc.name) {
                     event.player.moveServer(npc.server)
-                    return@addListener event.player.sendMessage("Done!") // TODO Remove debug code
                 }
-
-                event.player.sendMessage("Error!") // TODO Remove debug code
             }
         }
     }
