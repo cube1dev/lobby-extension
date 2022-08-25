@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.TextDecoration
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.entity.Entity
 import net.minestom.server.entity.EntityType
+import net.minestom.server.entity.PlayerSkin
 import net.minestom.server.entity.fakeplayer.FakePlayer
 import java.util.*
 
@@ -16,10 +17,7 @@ data class ServerNPC(val name: Component, val server: String, val loc: Pos, val 
 object NPCTask {
     val entityList = mutableListOf(
         ServerNPC(
-            "<bold><green>야생".toMini(),
-            "wild",
-            Pos(43.5, 113.0, 17.5, -180F, 0F),
-            UUID.fromString("d5c1b63b-4554-48cc-9322-44cae6193b0a")
+            "<bold><green>야생".toMini(), "wild", Pos(43.5, 113.0, 17.5, -180F, 0F)
         )
     )
 
@@ -34,6 +32,8 @@ object NPCTask {
 //            }
 //            entity.setInstance(instance, npc.loc)
             FakePlayer.initPlayer(UUID.randomUUID(), npc.server) { fakePlayer ->
+                fakePlayer.isInvisible = true
+                fakePlayer.skin = PlayerSkin.fromUsername("Plaming")
                 val meta = fakePlayer.entityMeta
                 meta.customName = npc.name
                 meta.isCustomNameVisible = true

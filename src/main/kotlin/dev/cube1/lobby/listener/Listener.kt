@@ -15,6 +15,7 @@ import net.minestom.server.entity.Entity
 import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.GameMode
 import net.minestom.server.entity.Player
+import net.minestom.server.entity.fakeplayer.FakePlayer
 import net.minestom.server.entity.metadata.other.ArmorStandMeta
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
@@ -157,6 +158,10 @@ object Listener {
         )
 
         eventNode.addListener(PlayerSpawnEvent::class.java) { event ->
+            if (event.player is FakePlayer) {
+                return@addListener
+            }
+
             event.player.setResourcePack(ResourcePack.optional("https://static.planetminecraft.com/files/resource_media/texture/easyblocks-e3380.zip", null))
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
