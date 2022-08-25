@@ -36,7 +36,6 @@ import java.util.concurrent.ConcurrentHashMap
 
 @Suppress("UnstableApiUsage")
 object Listener {
-
     val armourStandSeatMap = ConcurrentHashMap<Entity, Point>()
 
     val spawn = Pos(0.5, 116.0, 0.5, -90.0F, 0F)

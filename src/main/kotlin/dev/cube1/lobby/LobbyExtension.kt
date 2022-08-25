@@ -1,11 +1,13 @@
 package dev.cube1.lobby
 
 import dev.cube1.lobby.command.*
+import dev.cube1.lobby.handler.CampfireHandler
+import dev.cube1.lobby.handler.SignHandler
+import dev.cube1.lobby.handler.SkullHandler
 import dev.cube1.lobby.listener.Listener
 import dev.cube1.lobby.task.ParticleTask
 import dev.cube1.lobby.task.TabList
 import dev.cube1.lobby.task.TimeSyncTask
-import kotlinx.coroutines.DelicateCoroutinesApi
 import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension
 import net.kyori.adventure.key.Key;
@@ -15,8 +17,11 @@ import java.util.function.Supplier
 
 class LobbyExtension : Extension() {
     override fun initialize(): LoadStatus {
-        MinecraftServer.getBlockManager().registerHandler(NamespaceID.from(Key.key("minecraft:skull")), Supplier { SkullHandler() })
-        MinecraftServer.getBlockManager().registerHandler(NamespaceID.from(Key.key("minecraft:sign")), Supplier { SignHandler() })
+        MinecraftServer.getBlockManager().apply {
+            registerHandler(NamespaceID.from(Key.key("minecraft:skull"))) { SkullHandler() }
+            registerHandler(NamespaceID.from(Key.key("minecraft:sign"))) { SignHandler() }
+            registerHandler(NamespaceID.from(Key.key("minecraft:campfire"))) { CampfireHandler() }
+        }
         Listener.run(eventNode())
         ParticleTask.run()
         TabList.run()
@@ -41,5 +46,4 @@ class LobbyExtension : Extension() {
         Listener.armourStandSeatMap.clear()
         logger().info("[LobbyExtension] has been disabled!")
     }
-
 }
