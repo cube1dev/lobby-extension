@@ -16,8 +16,9 @@ object NPCTask {
     fun run() {
         entityList.forEach { npc ->
             val entity = Entity(EntityType.PLAYER).let {
-                it.customName = Component.text(npc.name)
-                it.isCustomNameVisible = false
+                val meta = it.entityMeta
+                meta.customName = Component.text(npc.name)
+                meta.isCustomNameVisible = false
 
                 it
             }
