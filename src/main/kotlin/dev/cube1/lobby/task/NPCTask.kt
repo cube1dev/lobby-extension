@@ -1,9 +1,11 @@
 package dev.cube1.lobby.task
 
 import dev.cube1.lobby.listener.Listener
+import dev.cube1.lobby.listener.Listener.instance
 import net.kyori.adventure.text.Component
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.entity.Entity
+import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.fakeplayer.FakePlayer
 import java.util.*
 
@@ -20,10 +22,12 @@ object NPCTask {
     )
 
     fun run() {
-        entityList.forEach { npc ->
-            FakePlayer.initPlayer(npc.uniqueId, npc.name, null)
-            val entity = Entity.getEntity(npc.uniqueId)
-            entity?.setInstance(Listener.instance, npc.loc)
-        }
+//        entityList.forEach { npc ->
+//            FakePlayer.initPlayer(npc.uniqueId, npc.name, null)
+//            val entity = Entity.getEntity(npc.uniqueId)
+//            entity?.setInstance(Listener.instance, npc.loc)
+//        }
+        val entity = Entity(EntityType.VILLAGER)
+        entity.setInstance(instance, Pos(43.5, 113.0, 17.5, -180F, 0F))
     }
 }

@@ -72,7 +72,7 @@ tasks {
     }
 
     // Set name, minimize, and merge service files
-    named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+    named<ShadowJar>("shadowJar") {
         archiveBaseName.set(project.name)
         mergeServiceFiles()
         minimize()
