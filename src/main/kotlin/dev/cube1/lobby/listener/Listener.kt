@@ -188,11 +188,13 @@ object Listener {
 //            if (event.entity.entityType != EntityType.PLAYER) {
 //                return@addListener
 //            }
-
             NPCTask.entityList.forEach { npc ->
-                if (event.entity.name == npc.name) {
+                if (event.target.customName == npc.name) {
                     event.player.moveServer(npc.server)
+                    return@addListener event.player.sendMessage("Done!") // TODO Remove debug code
                 }
+
+                event.player.sendMessage("Error!") // TODO Remove debug code
             }
         }
     }
