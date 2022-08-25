@@ -14,6 +14,10 @@ object NPCTask {
     )
 
     fun run() {
+        val spawnPosition = Pos(45.5, 115.0, 17.5)
+        val horse = Entity(EntityType.HORSE)
+        horse.setInstance(Listener.instance, spawnPosition)
+
         entityList.forEach { npc ->
             val entity = Entity(EntityType.PLAYER).let {
                 val meta = it.entityMeta
