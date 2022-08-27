@@ -47,7 +47,8 @@ object Listener {
 //        "wild" to Triple(14.5..16.5, 112.5..114.5, 15.5..17.5),
 //        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
         "race" to Triple(39.5..41.5, 111.5..113.5, 5.5..7.5),
-        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
+        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5),
+        "build" to Triple(15.5..17.5, 111.5..113.5, -13.5..-11.5),
     )
 
     lateinit var instance: InstanceContainer
@@ -66,6 +67,7 @@ object Listener {
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(40.5, 114.0, 6.5))
         instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(14.5, 113.0, -1.5))
+        instance.createIndicator("<bold><yellow>빌드서버<reset>\n<bold><red>관리자 전용 서버".toMini(), Pos(16.5, 112.0, -12.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if (event.newPosition.x >= 80 || event.newPosition.x <= -80 || event.newPosition.y <= 80 ||
