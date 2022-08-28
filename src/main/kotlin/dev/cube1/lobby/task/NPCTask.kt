@@ -1,8 +1,11 @@
 package dev.cube1.lobby.task
 
+import dev.cube1.lobby.listener.Listener.instance
 import dev.cube1.lobby.util.toMini
 import net.kyori.adventure.text.Component
 import net.minestom.server.coordinate.Pos
+import net.minestom.server.entity.Entity
+import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.PlayerSkin
 import net.minestom.server.entity.fakeplayer.FakePlayer
 import java.util.*
@@ -18,15 +21,15 @@ object NPCTask {
 
     fun run() {
         entityList.forEach { npc ->
-            FakePlayer.initPlayer(UUID.randomUUID(), npc.server) { fakePlayer ->
-                fakePlayer.isInvisible = true
-                fakePlayer.skin = PlayerSkin.fromUsername("Plaming")
-                val meta = fakePlayer.entityMeta
+            val entity = Entity(EntityType.VILLAGER).let {
+                val meta = it.entityMeta
                 meta.customName = npc.name
                 meta.isCustomNameVisible = true
 
-                fakePlayer.respawnPoint = npc.loc
+                it
             }
+
+            entity.setInstance(instance, npc.loc)
         }
     }
 }
