@@ -67,8 +67,8 @@ object Listener {
 
         instance.createIndicator("<bold><red>레<white>이<red>스".toMini(), Pos(40.5, 114.0, 6.5))
         instance.createIndicator("<bold><yellow>핏 경기장".toMini(), Pos(14.5, 113.0, -1.5))
-        instance.createIndicator("<bold><yellow>빌드서버<reset>".toMini(), Pos(16.5, 112.3, -12.5))
-        instance.createIndicator("<bold><red>관리자 전용 서버".toMini(), Pos(16.5, 112.0, -12.5))
+        instance.createIndicator("<bold><yellow>빌드서버<reset>".toMini(), Pos(16.5, 113.3, -12.5))
+        instance.createIndicator("<bold><red>관리자 전용 서버".toMini(), Pos(16.5, 113.0, -12.5))
 
         eventNode.addListener(PlayerMoveEvent::class.java) { event ->
             if (event.newPosition.x >= 80 || event.newPosition.x <= -80 || event.newPosition.y <= 80 ||
