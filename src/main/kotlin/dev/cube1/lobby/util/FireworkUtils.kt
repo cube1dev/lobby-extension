@@ -1,5 +1,6 @@
 package dev.cube1.lobby.util
 
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ import net.minestom.server.sound.SoundEvent
 import net.minestom.server.utils.PacketUtils.sendGroupedPacket
 import java.util.concurrent.ThreadLocalRandom
 
+@OptIn(DelicateCoroutinesApi::class)
 fun Collection<Player>.showFireworkWithDuration(
     instance: Instance,
     position: Pos,
@@ -29,7 +31,6 @@ fun Collection<Player>.showFireworkWithDuration(
     val fireworkItemStack = ItemStack.builder(Material.FIREWORK_ROCKET).meta(fireworkMeta).build()
     val firework = Entity(EntityType.FIREWORK_ROCKET)
     val meta = firework.entityMeta as FireworkRocketMeta
-
     val rand = ThreadLocalRandom.current()
 
     meta.fireworkInfo = fireworkItemStack
@@ -38,15 +39,18 @@ fun Collection<Player>.showFireworkWithDuration(
     firework.velocity = Vec(rand.nextDouble(0.02), 1.0, rand.nextDouble(0.02))
 
     this.forEach {
-        it.playSound(Sound.sound(SoundEvent.ENTITY_FIREWORK_ROCKET_LAUNCH, Sound.Source.AMBIENT, 1f, 1f), position.x, position.y, position.z)
+        it.playSound(Sound.sound(
+            SoundEvent.ENTITY_FIREWORK_ROCKET_LAUNCH,
+            Sound.Source.AMBIENT, 1f, 1f),
+            position.x,
+            position.y,
+            position.z
+        )
     }
 
     firework.setInstance(instance, position)
-
     firework.velocity = firework.velocity.apply { x, y, z -> Vec(x * 1.15, y + 0.8, z * 1.15) }
-
     sendGroupedPacket(this@showFireworkWithDuration, EntityStatusPacket(firework.entityId, 17))
-
     GlobalScope.launch {
         delay(3000)
         firework.remove()

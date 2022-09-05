@@ -8,7 +8,6 @@ import kotlinx.coroutines.*
 
 @OptIn(DelicateCoroutinesApi::class)
 object TabList {
-
     /*
     val uuidOfFakePlayers = ArrayListMultimap.create<Player, UUID>()
 

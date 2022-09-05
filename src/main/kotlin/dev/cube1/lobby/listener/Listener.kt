@@ -40,7 +40,6 @@ import java.util.concurrent.ConcurrentHashMap
 @Suppress("UnstableApiUsage")
 object Listener {
     val armourStandSeatMap = ConcurrentHashMap<Entity, Point>()
-
     val spawn = Pos(0.5, 116.0, 0.5, -90.0F, 0F)
     private val servers = hashMapOf(
 //        "race" to Triple(15.5..17.5, 111.5..113.5, -13.5..-11.5),
@@ -50,7 +49,6 @@ object Listener {
         "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5),
         "build" to Triple(15.5..17.5, 111.5..113.5, -13.5..-11.5),
     )
-
     lateinit var instance: InstanceContainer
 
     fun run(eventNode: EventNode<Event>) {
