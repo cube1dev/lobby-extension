@@ -188,7 +188,6 @@ object Listener {
 
             event.player.isFlying = false
         }
-
         eventNode.addListener(PlayerEntityInteractEvent::class.java) { event ->
 //            if (event.entity.entityType != EntityType.PLAYER) {
 //                return@addListener

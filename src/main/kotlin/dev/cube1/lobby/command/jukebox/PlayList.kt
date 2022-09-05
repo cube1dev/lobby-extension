@@ -5,9 +5,9 @@ import dev.emortal.nbstom.NBS
 import kotlinx.coroutines.*
 import net.minestom.server.entity.Player
 
+@OptIn(DelicateCoroutinesApi::class)
 class Playlist(val player: Player, val list: ArrayList<Int> = ArrayList(), var nowPlaying: Int = -1, var currentTick: Int = 0, private var _loop: Boolean = false, var playing: Boolean = false) {
     var playJob: Job? = null
-
     var loop
         get() = _loop
         set(value) {

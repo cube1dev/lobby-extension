@@ -18,7 +18,7 @@ import java.util.LinkedList
 val loadedNbs = LinkedList<NBS>()
 val nbsNames = LinkedList<String>()
 
-object JukeboxCommand: Command("jukebox") {
+object JukeboxCommand : Command("jukebox") {
 
     val playlist = HashMap<Player, Playlist>()
 

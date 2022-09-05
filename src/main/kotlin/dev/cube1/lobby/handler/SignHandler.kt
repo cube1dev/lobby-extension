@@ -6,13 +6,10 @@ import net.kyori.adventure.key.Key
 import net.minestom.server.tag.Tag
 import org.jglrxavpok.hephaistos.nbt.NBTCompound
 
-class SignHandler: BlockHandler {
+class SignHandler : BlockHandler {
+    override fun getNamespaceId(): NamespaceID = NamespaceID.from(Key.key("minecraft:sign"))
 
-    override fun getNamespaceId(): NamespaceID =
-        NamespaceID.from(Key.key("minecraft:sign"))
-
-    override fun getBlockEntityTags(): MutableCollection<Tag<*>> =
-        mutableListOf(
+    override fun getBlockEntityTags(): MutableCollection<Tag<*>> = mutableListOf(
             Tag.String("ExtraType"),
             Tag.NBT("Color"),
             Tag.NBT("GlowingText"),

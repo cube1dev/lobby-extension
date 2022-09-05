@@ -6,12 +6,10 @@ import net.kyori.adventure.key.Key
 import net.minestom.server.tag.Tag
 import org.jglrxavpok.hephaistos.nbt.NBTCompound
 
-class SkullHandler: BlockHandler {
-    override fun getNamespaceId(): NamespaceID =
-        NamespaceID.from(Key.key("minecraft:skull"))
+class SkullHandler : BlockHandler {
+    override fun getNamespaceId(): NamespaceID = NamespaceID.from(Key.key("minecraft:skull"))
 
-    override fun getBlockEntityTags(): MutableCollection<Tag<*>> =
-        mutableListOf(
+    override fun getBlockEntityTags(): MutableCollection<Tag<*>> = mutableListOf(
             Tag.String("ExtraType"),
             Tag.NBT("SkullOwner")
         )

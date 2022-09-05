@@ -11,7 +11,7 @@ import net.minestom.server.entity.metadata.other.ArmorStandMeta
 import net.minestom.server.instance.block.Block
 
 // crawled from emortalmc/lobbyextension
-object SitCommand: Command("sit") {
+object SitCommand : Command("sit") {
     init {
         setDefaultExecutor { sender, _ ->
             if (sender !is Player) {

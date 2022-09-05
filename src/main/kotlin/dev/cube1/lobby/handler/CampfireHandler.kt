@@ -8,8 +8,7 @@ import net.minestom.server.utils.NamespaceID
 class CampfireHandler : BlockHandler {
     override fun getNamespaceId(): NamespaceID = NamespaceID.from(Key.key("minecraft:campfire"))
 
-    override fun getBlockEntityTags(): MutableCollection<Tag<*>> =
-        mutableListOf(
+    override fun getBlockEntityTags(): MutableCollection<Tag<*>> = mutableListOf(
             Tag.NBT("Items")
         )
 }
