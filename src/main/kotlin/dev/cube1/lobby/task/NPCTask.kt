@@ -25,11 +25,6 @@ object NPCTask {
             Pos(43.5, 113.0, 17.5, -180F, 0F)
         ),
         ServerNPC(
-            "<bold><green>스카이 블럭".toMini(),
-            "skyblock",
-            Pos(55.5, 113.0, 2.5, 0F, 0F)
-        ),
-        ServerNPC(
             "<bold><aqua>Asdf 서버".toMini(),
             "asdf",
             Pos(48.5, 113.0, 3.5, 0F, 0F)
