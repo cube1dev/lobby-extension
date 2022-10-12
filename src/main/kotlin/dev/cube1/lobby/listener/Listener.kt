@@ -5,7 +5,6 @@ import dev.cube1.lobby.util.createIndicator
 import dev.cube1.lobby.util.moveServer
 import dev.cube1.lobby.util.showFireworkWithDuration
 import dev.cube1.lobby.util.toMini
-import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.color.Color
 import net.minestom.server.coordinate.Point
@@ -46,7 +45,6 @@ object Listener {
 //        "wild" to Triple(14.5..16.5, 112.5..114.5, 15.5..17.5),
 //        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5)
         "race" to Triple(39.5..41.5, 111.5..113.5, 5.5..7.5),
-        "pit" to Triple(13.5..15.5, 110.5..114.5, -2.5..-0.5),
         "build" to Triple(15.5..17.5, 111.5..113.5, -13.5..-11.5),
     )
     lateinit var instance: InstanceContainer
