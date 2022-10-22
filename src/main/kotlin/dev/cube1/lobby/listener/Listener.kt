@@ -161,7 +161,7 @@ object Listener {
                 return@addListener
             }
 
-            event.player.setResourcePack(ResourcePack.optional("https://static.planetminecraft.com/files/resource_media/texture/easyblocks-e3380.zip", null))
+            event.player.setResourcePack(ResourcePack.optional("https://cloud.projecttl.net/s/CnHaGLGyz8n7PAb/download/!%20%ED%94%84%EC%A0%9D%20%EC%84%9C%EB%B2%84%20%EB%A6%AC%EC%86%8C%EC%8A%A4%ED%8C%A9%20%281%29.zip", null))
             event.player.gameMode = GameMode.ADVENTURE
             event.player.teleport(spawn)
             val msg = "<bold><aqua>PROJECT_TL'S PRIVATE SERVER <reset>${messages.random().replace(
