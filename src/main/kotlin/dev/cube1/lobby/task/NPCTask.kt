@@ -20,7 +20,7 @@ data class ServerNPC(
 object NPCTask {
     val entityList = mutableListOf(
         ServerNPC(
-            "<bold><green>야생".toMini(),
+            "<bold><green>야생 [CLOSED]".toMini(),
             "wild",
             Pos(43.5, 113.0, 17.5, -180F, 0F)
         ),
@@ -28,6 +28,11 @@ object NPCTask {
             "<bold><aqua>Asdf 서버".toMini(),
             "asdf",
             Pos(48.5, 113.0, 3.5, 0F, 0F)
+        ),
+        ServerNPC(
+            "<bold><green>프로젝트의 놀이터 서버".toMini(),
+            "pg",
+            Pos(51.5, 113.0, 22.5, -180F, 0F)
         )
     )
 
