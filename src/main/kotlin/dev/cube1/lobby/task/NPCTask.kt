@@ -31,7 +31,7 @@ object NPCTask {
         ),
         ServerNPC(
             "<bold><green>프로젝트의 놀이터 서버".toMini(),
-            "pg",
+            "playground",
             Pos(51.5, 113.0, 22.5, -180F, 0F)
         )
     )
