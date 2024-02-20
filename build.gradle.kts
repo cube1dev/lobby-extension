@@ -47,7 +47,7 @@ dependencies {
 
     implementation("com.google.guava:guava:31.1-jre")
 
-    implementation("net.kyori:adventure-text-minimessage:4.12.0")
+    implementation("net.kyori:adventure-text-minimessage:4.16.0")
 
     implementation("com.github.EmortalMC:NBStom:latest")
 
