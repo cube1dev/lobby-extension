@@ -51,7 +51,7 @@ dependencies {
 
     implementation("com.github.EmortalMC:NBStom:latest")
 
-    implementation("org.shredzone.commons:commons-suncalc:3.5")
+    implementation("org.shredzone.commons:commons-suncalc:3.10")
 
     compileOnly(files("libs/particable-1.0.0-all.jar"))
 }
